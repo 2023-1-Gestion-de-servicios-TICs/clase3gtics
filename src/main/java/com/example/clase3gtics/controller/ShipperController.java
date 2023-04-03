@@ -71,6 +71,18 @@ public class ShipperController {
 
     }
 
+    @PostMapping("/buscar")
+    public String buscarTransportistaPorNombre(@RequestParam("textoBuscar") String textoBuscar,
+                                               Model model) {
+
+        //List<Shipper> lista = shipperRepository.findByCompanyNameOrPhone(textoBuscar, textoBuscar);
+        List<Shipper> lista = shipperRepository.buscarParcialPorNombre(textoBuscar);
+        model.addAttribute("shipperList", lista);
+        model.addAttribute("textoBuscado", textoBuscar);
+
+        return "shipper/list";
+    }
+
 
 }
 
